@@ -1,0 +1,8 @@
+# Fine grid for coverage counting (226,800 cells).  Too large for dense
+# Fisher/resolution matrices; use grid_10deg for those.
+grid:
+  name: grid_2deg
+  dlat_deg: 2.0
+  dlon_deg: 2.0
+  r_edges_km: [0.0, 600.0, 1221.5, 1800.0, 2400.0, 2900.0, 3480.0,
+               4000.0, 4500.0, 5000.0, 5400.0, 5701.0, 5971.0, 6151.0, 6371.0]

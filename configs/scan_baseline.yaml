@@ -1,0 +1,51 @@
+name: baseline
+grid: configs/grid_10deg.yaml
+detectors: configs/detectors.yaml
+
+oscillation:
+  ordering: normal          # normal | inverted
+  s12sq: 0.310
+  s23sq: 0.582
+  s13sq: 0.0224
+  dcp_deg: 217.0
+  dm21: 7.39e-5
+  dm31: 2.525e-3
+
+flux:
+  kind: gaisser_like        # gaisser_like | table  (table needs 'path' to an npz)
+  nuisances: {}             # central values of flux_norm, delta_gamma, ...
+
+# The 3D truth model.  radial = shell_mean_prem puts PREM's volume-averaged
+# density in every shell; the anomalies are fractional perturbations.
+model:
+  name: llsvp_pacific
+  radial: shell_mean_prem
+  ye_kind: core_mantle
+  lateral_scale: 1.0
+  anomalies:
+    - kind: blob
+      lat_deg: -10.0
+      lon_deg: -170.0
+      r_min_km: 3480.0
+      r_max_km: 4000.0
+      radius_deg: 25.0
+      amplitude: 0.01       # +1 % density at the base of the mantle under the Pacific
+      profile: top_hat
+
+# Nuisance parameters and Gaussian priors used in the Fisher marginalisation.
+nuisances:
+  oscillation:
+    dm31:  {sigma: 3.0e-5}
+    s23sq: {sigma: 0.02}
+    s13sq: {sigma: 0.0007}
+  flux:
+    flux_norm:      {sigma: 0.20}
+    delta_gamma:    {sigma: 0.05}
+    nue_numu_ratio: {sigma: 0.05}
+    nubar_nu_ratio: {sigma: 0.05}
+  radial_scale: {sigma: 0.05}     # per-shell density scale, weak prior = free radial profile
+
+fisher:
+  min_expected: 1.0e-3            # bins below this expectation carry no information
+  max_active_cells: 10000         # refuse dense Fisher above this (8400 cells ~ 0.6 GB per matrix)
+  prior_sigma_cell: 0.05          # 5 % per-cell prior for the resolution matrix / error maps

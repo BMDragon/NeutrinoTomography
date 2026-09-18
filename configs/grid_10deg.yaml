@@ -1,0 +1,8 @@
+# Coarse grid for resolution matrices and Fisher analysis (9072 cells).
+grid:
+  name: grid_10deg
+  dlat_deg: 10.0
+  dlon_deg: 10.0
+  # PREM boundaries (ICB 1221.5, CMB 3480, 5701, 5971, 6151) plus subdivisions
+  r_edges_km: [0.0, 600.0, 1221.5, 1800.0, 2400.0, 2900.0, 3480.0,
+               4000.0, 4500.0, 5000.0, 5400.0, 5701.0, 5971.0, 6151.0, 6371.0]

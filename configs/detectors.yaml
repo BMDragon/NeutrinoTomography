@@ -1,0 +1,68 @@
+# Four sites.  Masses/resolutions are round numbers for a feasibility study,
+# not detector-collaboration figures.  Edit freely: everything downstream
+# is keyed by a hash of (grid, sites, binning), so cached rays rebuild.
+detectors:
+  - name: IceCube-Upgrade      # South Pole (lat -90 exactly makes the local frame degenerate)
+    lat_deg: -89.99
+    lon_deg: 0.0
+    depth_km: 2.0
+    mass_mton: 5.0
+    livetime_yr: 10.0
+    e_min_gev: 2.0
+    e_max_gev: 100.0
+    n_e_bins: 16
+    e_oversample: 2
+    sigma_log10e: 0.15
+    sigma_cosz: 0.10
+    sigma_az_deg: 15.0
+    efficiency: {track: 0.8, cascade: 0.6}
+  - name: KM3NeT-ORCA           # Mediterranean, off Toulon
+    lat_deg: 42.80
+    lon_deg: 6.03
+    depth_km: 2.45
+    mass_mton: 7.0
+    livetime_yr: 10.0
+    e_min_gev: 2.0
+    e_max_gev: 100.0
+    n_e_bins: 16
+    e_oversample: 2
+    sigma_log10e: 0.15
+    sigma_cosz: 0.10
+    sigma_az_deg: 15.0
+    efficiency: {track: 0.8, cascade: 0.6}
+  - name: Hyper-K               # Kamioka
+    lat_deg: 36.36
+    lon_deg: 137.31
+    depth_km: 0.65
+    mass_mton: 0.19
+    livetime_yr: 10.0
+    e_min_gev: 0.5
+    e_max_gev: 20.0
+    n_e_bins: 12
+    e_oversample: 2
+    sigma_log10e: 0.10
+    sigma_cosz: 0.15
+    sigma_az_deg: 20.0
+    efficiency: {track: 0.9, cascade: 0.9}
+  - name: P-ONE                 # Cascadia Basin, NE Pacific (hypothetical Mton-scale)
+    lat_deg: 47.7
+    lon_deg: -127.7
+    depth_km: 2.6
+    mass_mton: 5.0
+    livetime_yr: 10.0
+    e_min_gev: 2.0
+    e_max_gev: 100.0
+    n_e_bins: 16
+    e_oversample: 2
+    sigma_log10e: 0.15
+    sigma_cosz: 0.10
+    sigma_az_deg: 15.0
+    efficiency: {track: 0.8, cascade: 0.6}
+
+# Analysis binning of the arrival direction (shared by all sites).
+# Upgoing only: cosz in [-1, 0].  Azimuth is clockwise from north.
+binning:
+  cosz_edges: {min: -1.0, max: 0.0, n: 20}
+  az_edges:   {min: 0.0, max: 360.0, n: 36}
+  cosz_sub: 3          # sub-rays per cosz bin (the most vertical bin must reach the inner core)
+  az_sub: 1
