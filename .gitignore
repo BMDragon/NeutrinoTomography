@@ -7,3 +7,10 @@ dist/
 .pytest_cache/
 notebooks/.ipynb_checkpoints/
 results/
+
+# old pip cache (pip cache-dir now lives outside the repo)
+http-v2/
+http-v1/
+wheels/
+selfcheck/
+.claude/
